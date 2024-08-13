@@ -1,4 +1,4 @@
-package compass.interview;
+package compass.interview.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
