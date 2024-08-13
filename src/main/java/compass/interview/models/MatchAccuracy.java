@@ -8,10 +8,12 @@ package compass.interview.models;
  *   <li>{@code HIGH}: Indicates a high level of confidence in the match.</li>
  *   <li>{@code MEDIUM}: Indicates a medium level of confidence in the match.</li>
  *   <li>{@code LOW}: Indicates a low level of confidence in the match.</li>
+ *   <li>{@code NONE}: Indicates no match.</li>
  * </ul>
  */
 public enum MatchAccuracy {
     HIGH,
     MEDIUM,
-    LOW
+    LOW,
+    NONE
 }
