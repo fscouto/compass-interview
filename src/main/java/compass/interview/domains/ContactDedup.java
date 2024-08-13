@@ -35,9 +35,9 @@ public class ContactDedup {
         MatchAccuracy accuracy;
         if (similarityScore <= 0) {
             accuracy = MatchAccuracy.NONE;
-        } else if (similarityScore > 0.8) {
+        } else if (similarityScore > 0.7) {
             accuracy = MatchAccuracy.HIGH;
-        } else if (similarityScore > 0.5) {
+        } else if (similarityScore > 0.4) {
             accuracy = MatchAccuracy.MEDIUM;
         } else {
             accuracy = MatchAccuracy.LOW;

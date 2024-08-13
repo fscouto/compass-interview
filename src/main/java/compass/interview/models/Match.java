@@ -27,4 +27,15 @@ public class Match {
      * The accuracy level of the match (e.g., "High", "Medium", "Low").
      */
     private MatchAccuracy accuracy;
+
+    /**
+     * Returns a string representation of the match.
+     *
+     * @return A string containing the source contact ID, matched contact ID, and accuracy.
+     */
+    @Override
+    public String toString() {
+        return String.format("Source Contact ID: %d, Matched Contact ID: %d, Accuracy: %s",
+                sourceContactId, matchedContactId, accuracy);
+    }
 }

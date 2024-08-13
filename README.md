@@ -35,5 +35,11 @@ mvn test
 3. Run the code:
 
 ```bash
-java -cp target/classes/ compass.interview.Main
+java -cp target/classes/ compass.interview.Main <CSV_FILE_PATH>
+```
+
+### Example
+
+```bash
+java -cp target/classes/ compass.interview.Main ./src/main/resources/input.csv
 ```
