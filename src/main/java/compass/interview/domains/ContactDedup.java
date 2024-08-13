@@ -1,7 +1,11 @@
 package compass.interview.domains;
 
 import compass.interview.models.Contact;
+import compass.interview.models.Match;
 import compass.interview.models.MatchAccuracy;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactDedup {
     /**
@@ -39,5 +43,33 @@ public class ContactDedup {
             accuracy = MatchAccuracy.LOW;
         }
         return accuracy;
+    }
+
+    /**
+     * Identifies duplicate contacts from a list of contacts.
+     *
+     * @param contacts A list of {@code Contact} objects to check for duplicates.
+     * @return A list of {@code Match} objects representing duplicates.
+     */
+    public List<Match> findDuplicates(List<Contact> contacts) {
+        List<Match> matches = new ArrayList<>();
+
+        // Iterate through the list of contacts twice,
+        // so it is possible to compare every two pairs of different contacts
+        for (int i = 0; i < contacts.size(); i++) {
+            for (int j = i + 1; j < contacts.size(); j++) {
+                Contact contact1 = contacts.get(i);
+                Contact contact2 = contacts.get(j);
+
+                // Calculate a match accuracy based on similarity
+                MatchAccuracy accuracy = calculateAccuracy(contact1, contact2);
+
+                // For valid matches, stores the match in the resulting list
+                if (accuracy != MatchAccuracy.NONE) {
+                    matches.add(new Match(contact1.getContactId(), contact2.getContactId(), accuracy));
+                }
+            }
+        }
+        return matches;
     }
 }

@@ -2,10 +2,14 @@ package compass.interview;
 
 import compass.interview.domains.ContactDedup;
 import compass.interview.models.Contact;
+import compass.interview.models.Match;
 
 import compass.interview.models.MatchAccuracy;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -47,5 +51,39 @@ public class ContactDedupTest {
         MatchAccuracy accuracy3 = dedup.calculateAccuracy(contact3, contact4);
         assertEquals("Totally different contacts should have accuracy as NONE",
                 MatchAccuracy.NONE, accuracy3);
+    }
+
+    /**
+     * Tests the method that identifies duplicate contacts.
+     */
+    @Test
+    public void testFindPotentialDuplicates() {
+        List<Contact> contacts = new ArrayList<>();
+        contacts.add(new Contact(1001, "C", "F", "mollis.lectus.pede@outlook.net", "", "449-6990 Tellus. Rd."));
+        contacts.add(new Contact(1002, "C", "French", "mollis.lectus.pede@outlook.net", "39746", "449-6990 Tellus. Rd."));
+        contacts.add(new Contact(1003, "Ciara", "F", "non.lacinia.at@zoho.ca", "39746", ""));
+
+        List<Match> matches = dedup.findDuplicates(contacts);
+
+        // Verify the size of the matches list
+        assertEquals("There should be 3 potential matches", 3, matches.size());
+
+        // Verify the first match
+        Match match1 = matches.get(0);
+        assertEquals(1001, match1.getSourceContactId());
+        assertEquals(1002, match1.getMatchedContactId());
+        assertEquals(MatchAccuracy.MEDIUM, match1.getAccuracy());
+
+        // Verify the second match
+        Match match2 = matches.get(1);
+        assertEquals(1001, match2.getSourceContactId());
+        assertEquals(1003, match2.getMatchedContactId());
+        assertEquals(MatchAccuracy.LOW, match2.getAccuracy());
+
+        // Verify the third match
+        Match match3 = matches.get(2);
+        assertEquals(1002, match3.getSourceContactId());
+        assertEquals(1003, match3.getMatchedContactId());
+        assertEquals(MatchAccuracy.LOW, match3.getAccuracy());
     }
 }
