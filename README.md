@@ -13,18 +13,27 @@ potentially duplicates. You need to write a function that will do the following:
 3. A contact might have multiple or no matches
 4. All processing should be done in working memory (no database).
 
+## Requirements
+
+- Java 17 (OpenJDK 17.0.1) installed.
+- Maven
+
 ## Usage
 
-1. Make sure you have Java installed.
-
-2. Compile the code:
+1. Compile the code:
 
 ```bash
-javac -d out/ src/main/java/compass/interview/*.java
+mvn clean package
+```
+
+2. Test the code:
+
+```bash
+mvn test
 ```
 
 3. Run the code:
 
 ```bash
-java -cp out/ compass.interview.Main
+java -cp target/classes/ compass.interview.Main
 ```
