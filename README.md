@@ -15,7 +15,7 @@ potentially duplicates. You need to write a function that will do the following:
 
 ## Requirements
 
-- Java 17 (OpenJDK 17.0.1) installed.
+- Java 17 (OpenJDK 17.0.1)
 - Maven
 
 ## Usage
